@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block titulo %}LISTA DE MENÚS{% endblock %}
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crear_menu' %}" role="button">AGREGAR</a>
+        <form method="get" class="float-right">
+            <div class="input-group">
+                <input type="date" class="form-control" name="fecha" value="{{ fecha_consulta|default:'' }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+                    <a class="btn btn-outline-secondary" href="{% url 'menus' %}">Limpiar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Menús</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>PLATOS</th>
+                        <th>FECHA</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for menu in menus %}
+                    <tr>
+                        <td>{{ menu.id }}</td>
+                        <td>{{ menu.nombre }}</td>
+                        <td>
+                            {% for plato in menu.platos.all %}
+                                {{ plato.nombre }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                No hay platos seleccionados
+                            {% endfor %}
+                        </td>
+                        <td>{{ menu.fecha_disponible|date:"d F Y" }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'editar_menu' menu.id %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'eliminar_menu' menu.id %}">Borrar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No se encontraron menús.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-danger" href="{% url 'inicio' %}" role="button">VOLVER A INICIO</a>
+    </div>
+</div>
+{% endblock %}

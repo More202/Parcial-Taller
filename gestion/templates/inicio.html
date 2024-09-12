@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} EDITAR UNA MARCA {% endblock %}
+
+{% block contenido %} 
+
+<div class="p-5 mb-4 bg-light rounded-3" style="background-image: url(https://media.admagazine.com/photos/6413c50c0181e6a3029f340c/16:9/w_1920,c_limit/FIID_21_12_22_SALAZAR_6253.jpg); background-size: cover; background-position: center center;  ">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold" style="color: red;">RESTAURANTE</h1>
+        
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" href="{% url 'clientes' %}" role="button">CLIENTES</a>
+    <a class="btn btn-primary" href="{% url 'mesas' %}" role="button">MESAS</a>
+    <a class="btn btn-primary" href="{% url 'menus' %}" role="button">MENU</a>
+    <a class="btn btn-primary" href="{% url 'reservaciones' %}" role="button">RESERVACIONES</a>
+    <a class="btn btn-primary" href="{% url 'platos' %}" role="button">PLATOS</a>
+</div>
+
+
+
+{% endblock %}

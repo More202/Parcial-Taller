@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} AGREGAR NUEVO {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        CREAR NUEVO
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Cargar datos</h4>
+        {% include 'plantillas/form.html' %}
+    </div>
+</div>
+
+
+{% endblock %}

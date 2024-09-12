@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} LISTA DE ... {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_reservacion' %}" role="button">AGREGAR</a>
+
+    </div>
+    
+    <div class="card-body">
+        <h4 class="card-title"> algo</h4>
+        <div class="table-responsive">
+            <table
+                class="table table-primary">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">CLIENTE</th>
+                        <th scope="col">MESA</th>
+                        <th scope="col">FECHA_ORDEN</th>
+                        <th scope="col">DURACION</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for campo in reservacion %}
+
+                    <tr class="">
+                        <td>{{ campo.id }}</td>
+                        <td>{{ campo.cliente.nombre }}</td>
+                        <td>{{ campo.mesa.numero }}</td>
+                        <td>{{ campo.fecha_orden }}</td>
+                        <td>{{ campo.duracion }}</td>
+                        <td>{{ campo.estado }}</td>
+
+                        <!--FK <td>{{ orden.cliente.nombre }}</td>  -->
+
+                        <td><a class="btn btn-info" href="{% url 'editar_reservacion' campo.id %}" role="button">Editar</a>
+                        | <a class="btn btn-danger" href="{% url 'eliminar_reservacion' campo.id %}" role="button">Borrar</a></td>
+                    </tr>
+
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-danger" href="{% url 'inicio' %}" role="button">VOLVER A INICIO</a>
+
+        
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}
